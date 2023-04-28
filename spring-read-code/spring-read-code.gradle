@@ -1,0 +1,11 @@
+description = "spring read code"
+
+apply plugin: "kotlin"
+
+dependencies {
+	api(project(":spring-context"))
+	api(project(":spring-web"))
+	api(project(":spring-webmvc"))
+	api(project(":spring-webflux"))
+	compileOnly("javax.servlet:servlet-api:2.5")
+}
