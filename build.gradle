@@ -122,3 +122,7 @@ configure(rootProject) {
 	description = "Spring Framework"
 	apply plugin: 'org.springframework.build.api-diff'
 }
+
+jar {
+	duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
+}
