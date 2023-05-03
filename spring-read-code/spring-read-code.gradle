@@ -3,16 +3,24 @@ description = "spring read code"
 apply plugin: "war"
 
 dependencies {
-//	api(project(":spring-context"))
-	api(project(":spring-web"))
-	api(project(":spring-webmvc"))
-	api(project(":spring-webflux"))
+    api(project(":spring-core"))
+    api(project(":spring-web"))
+    api(project(":spring-webmvc"))
+    api(project(":spring-webflux"))
+    api(project(":spring-jdbc"))
 
-	compileOnly("javax.servlet.jsp:jsp-api:2.2.1-b03")
-	implementation("jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.0")
-	api("javax.servlet.jsp:javax.servlet.jsp-api:2.3.3")
-	api("javax.servlet:jstl:1.2")
+    compileOnly("javax.servlet.jsp:jsp-api:2.2.1-b03")
+    implementation("jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.0")
+    api("javax.servlet.jsp:javax.servlet.jsp-api:2.3.3")
+    api("javax.servlet:jstl:1.2")
+    runtimeOnly("org.aspectj:aspectjweaver:1.9.6")
 
-	implementation("com.fasterxml.jackson.core:jackson-databind:2.14.2")
-	implementation("jakarta.servlet:jakarta.servlet-api")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.14.2")
+    implementation("jakarta.servlet:jakarta.servlet-api")
+
+    // mysql mybatis
+    api("com.alibaba:druid:1.2.8")
+    implementation("mysql:mysql-connector-java:5.1.38")
+    implementation("com.baomidou:mybatis-plus:3.5.3.1")
+    compileOnly("org.projectlombok:lombok:1.18.24")
 }

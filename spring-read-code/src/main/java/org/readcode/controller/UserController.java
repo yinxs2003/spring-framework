@@ -16,7 +16,9 @@
 
 package org.readcode.controller;
 
+import org.readcode.service.UserService;
 import org.readcode.vo.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +26,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class HelloController {
+public class UserController {
+
+	@Autowired
+	private UserService userService;
 
 	@GetMapping("/")
 	public String getUser() {
@@ -37,5 +42,11 @@ public class HelloController {
 		User user = new User();
 		user.setName(value+"");
 		return user;
+	}
+
+	@GetMapping(value = "/selectListAgeGt15",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public Object selectListAgeGt15() {
+		return userService.selectListAgeGt15();
 	}
 }
