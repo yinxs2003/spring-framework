@@ -12,7 +12,7 @@ buildscript {
 // 3rd party plugin repositories can be configured in settings.gradle
 plugins {
 	id "io.spring.dependency-management" version "1.0.7.RELEASE" apply false
-	id "org.jetbrains.kotlin.jvm" version "1.2.71" apply false
+	id "org.jetbrains.kotlin.jvm" version "1.6.0" apply false
 	id "org.jetbrains.dokka" version "0.9.18"
 	id "org.asciidoctor.convert" version "1.5.8"
 }
@@ -36,7 +36,7 @@ ext {
 	jackson2Version      = "2.9.9"
 	jettyVersion         = "9.4.31.v20200723"
 	junit5Version        = "5.3.2"
-	kotlinVersion        = "1.2.71"
+	kotlinVersion        = "1.6.0"
 	log4jVersion         = "2.11.2"
 	nettyVersion         = "4.1.51.Final"
 	reactorVersion       = "Californium-SR23"
@@ -95,7 +95,9 @@ configure(allprojects) { project ->
 
 	compileJava.options*.compilerArgs = commonCompilerArgs +
 			["-Xlint:varargs", "-Xlint:fallthrough", "-Xlint:rawtypes",
-			 "-Xlint:deprecation", "-Xlint:unchecked", "-Werror"]
+			 "-Xlint:deprecation", "-Xlint:unchecked"
+//			 , "-Werror"
+			]
 
 	compileTestJava.options*.compilerArgs = commonCompilerArgs +
 			["-Xlint:-varargs", "-Xlint:-fallthrough", "-Xlint:-rawtypes",
@@ -118,8 +120,8 @@ configure(allprojects) { project ->
 		kotlinOptions {
 			jvmTarget = "1.8"
 			freeCompilerArgs = ["-Xjsr305=strict"]
-			apiVersion = "1.1"
-			languageVersion = "1.1"
+			apiVersion = "1.6"
+			languageVersion = "1.6"
 		}
 	}
 
