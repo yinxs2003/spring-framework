@@ -18,9 +18,8 @@ package org.readcode.controller;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.readcode.po.UserPo;
 import org.readcode.service.UserService;
-import org.readcode.vo.User;
+import org.readcode.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -45,15 +44,15 @@ public class UserController {
 	@GetMapping(value = "/user", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public Object primitive(@RequestParam Integer value) {
-		User user = new User();
-		user.setName(value + "");
+		UserVo user = new UserVo();
+		user.setUserName(value + "");
 		return user;
 	}
 
 	@GetMapping(value = "/selectListAgeGt15", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public List<User> selectListAgeGt15() {
-		List<User> userPoList = userService.selectListAgeGt15();
+	public List<UserVo> selectListAgeGt15() {
+		List<UserVo> userPoList = userService.selectListAgeGt15();
 
 		return userPoList;
 	}
