@@ -18,9 +18,9 @@ package org.readcode.controller;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.readcode.po.UserPo;
 import org.readcode.service.UserService;
-import org.readcode.vo.User;
+import org.readcode.util.SpringContextUtil;
+import org.readcode.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -29,6 +29,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+
+import static org.readcode.ext.ModifyUserBeanPostProcessor.MODIFY_USER_BEAN_POST_PROCESSOR;
 
 @Controller
 public class UserController {
@@ -42,18 +44,16 @@ public class UserController {
 		return "index";
 	}
 
-	@GetMapping(value = "/user", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/modifyUserBeanPostProcessor", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public Object primitive(@RequestParam Integer value) {
-		User user = new User();
-		user.setName(value + "");
-		return user;
+	public Object modifyUserBeanPostProcessor() {
+		return SpringContextUtil.getBean(MODIFY_USER_BEAN_POST_PROCESSOR);
 	}
 
 	@GetMapping(value = "/selectListAgeGt15", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public List<User> selectListAgeGt15() {
-		List<User> userPoList = userService.selectListAgeGt15();
+	public List<UserVo> selectListAgeGt15() {
+		List<UserVo> userPoList = userService.selectListAgeGt15();
 
 		return userPoList;
 	}
