@@ -28,6 +28,5 @@
 	<context:component-scan base-package="org.readcode"/>
 	<!-- 引入属性文件 -->
 	<context:property-placeholder location="classpath:jdbc.properties"/>
-	<!-- mybatis配置 -->
-	<import resource="classpath:spring/spring-mybatis.xml"/>
+
 </beans>
