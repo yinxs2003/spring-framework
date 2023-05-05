@@ -11,12 +11,13 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
  * 自定义BeanPostProcessor,用来修改ModifyUserBeanPostProcessor这个bean的属性
  */
 public class ModifyUserBeanPostProcessor implements BeanFactoryPostProcessor {
+	public static String MODIFY_USER_BEAN_POST_PROCESSOR = "modifyUserBeanPostProcessor";
 	protected final Log logger = LogFactory.getLog(getClass());
 
 	// 执行完之后，ModifyUserBeanPostProcessor这个bean里的值会填充新的属性
 	@Override
 	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
-		UserVo userVo = (UserVo) beanFactory.getBean("ModifyUserBeanPostProcessor");
+		UserVo userVo = (UserVo) beanFactory.getBean(MODIFY_USER_BEAN_POST_PROCESSOR);
 		userVo.setSex("girl");
 		userVo.setAge(19);
 		logger.info("=====>" + userVo);

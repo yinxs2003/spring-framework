@@ -10,8 +10,8 @@
     	https://www.springframework.org/schema/context/spring-context.xsd
     	http://www.springframework.org/schema/mvc
         https://www.springframework.org/schema/mvc/spring-mvc.xsd">
-
-	<bean class="org.readcode.vo.UserVo" name="ModifyUserBeanPostProcessor">
+	<!-- 自定义beans -->
+	<bean class="org.readcode.vo.UserVo" name="modifyUserBeanPostProcessor">
 		<property name="userName" value="c"/>
 		<property name="password" value="cp"/>
 	</bean>
