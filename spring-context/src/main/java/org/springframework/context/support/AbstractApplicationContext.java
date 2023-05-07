@@ -526,11 +526,13 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 
 			try {
 				// Allows post-processing of the bean factory in context subclasses.
+				// 为了实现post_processor的子类扩展使用，默认为空
 				postProcessBeanFactory(beanFactory);
 
 				// Invoke factory processors registered as beans in the context.
 				// 调用各种bean的处理器，存放在beanDefinitionMap里，beanDefinitionMap是在DefaultBeanFactory的变量
 				// 在这里对beanDefinitionMap里元素的进行赋值
+				// 处理所有的post-processors
 				invokeBeanFactoryPostProcessors(beanFactory);
 
 				// Register bean processors that intercept bean creation.

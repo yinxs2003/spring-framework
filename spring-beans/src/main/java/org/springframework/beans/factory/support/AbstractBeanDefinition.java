@@ -433,6 +433,8 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	 * @param classLoader the ClassLoader to use for resolving a (potential) class name
 	 * @return the resolved bean class
 	 * @throws ClassNotFoundException if the class name could be resolved
+	 *
+	 * 根据反射返回类
 	 */
 	@Nullable
 	public Class<?> resolveBeanClass(@Nullable ClassLoader classLoader) throws ClassNotFoundException {

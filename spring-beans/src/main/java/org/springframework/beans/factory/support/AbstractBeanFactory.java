@@ -315,6 +315,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 				}
 
 				// Create bean instance.
+				// 在这里执行创建Bean实例操作
 				if (mbd.isSingleton()) {
 					sharedInstance = getSingleton(beanName, () -> {
 						try {
@@ -1367,6 +1368,9 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	 * Resolve the bean class for the specified bean definition,
 	 * resolving a bean class name into a Class reference (if necessary)
 	 * and storing the resolved Class in the bean definition for further use.
+	 *
+	 * <p>解析指定 bean 定义的 bean 类，将 bean 类名解析为 Class 引用（如果需要）并将解析后的 Class 存储在 bean 定义中以供进一步使用。<p/>
+	 *
 	 * @param mbd the merged bean definition to determine the class for
 	 * @param beanName the name of the bean (for error handling purposes)
 	 * @param typesToMatch the types to match in case of internal type matching purposes
@@ -1460,6 +1464,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		}
 
 		// Resolve regularly, caching the result in the BeanDefinition...
+		// 定期解析，将结果缓存在 BeanDefinition 中
 		return mbd.resolveBeanClass(beanClassLoader);
 	}
 

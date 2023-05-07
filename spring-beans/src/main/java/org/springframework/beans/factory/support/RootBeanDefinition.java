@@ -343,6 +343,7 @@ public class RootBeanDefinition extends AbstractBeanDefinition {
 	/**
 	 * Determine preferred constructors to use for default construction, if any.
 	 * Constructor arguments will be autowired if necessary.
+	 * <p>如果有默认构造的将返回默认构造函数。 如有必要，构造函数参数将自动装配。</p>
 	 * @return one or more preferred constructors, or {@code null} if none
 	 * (in which case the regular no-arg default constructor will be called)
 	 * @since 5.1

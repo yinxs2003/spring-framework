@@ -160,6 +160,10 @@ class ConfigurationClassParser {
 	}
 
 
+	/**
+	 * 在这里进行Controller等实例的创建
+	 * @param configCandidates
+	 */
 	public void parse(Set<BeanDefinitionHolder> configCandidates) {
 		for (BeanDefinitionHolder holder : configCandidates) {
 			BeanDefinition bd = holder.getBeanDefinition();
@@ -196,6 +200,9 @@ class ConfigurationClassParser {
 		processConfigurationClass(new ConfigurationClass(clazz, beanName));
 	}
 
+	/**
+	 * 在这里进行@Controller服务实例的创建
+	 */
 	protected final void parse(AnnotationMetadata metadata, String beanName) throws IOException {
 		processConfigurationClass(new ConfigurationClass(metadata, beanName));
 	}

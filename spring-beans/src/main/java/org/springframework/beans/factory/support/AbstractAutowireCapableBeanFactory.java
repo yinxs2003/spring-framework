@@ -511,7 +511,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		}
 
 		try {
-			Object beanInstance = doCreateBean(beanName, mbdToUse, args);
+			Object beanInstance = doCreateBean(beanName, mbdToUse, args); // 这里调用实例创建方法
 			if (logger.isTraceEnabled()) {
 				logger.trace("Finished creating instance of bean '" + beanName + "'");
 			}
@@ -550,7 +550,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		if (mbd.isSingleton()) {
 			instanceWrapper = this.factoryBeanInstanceCache.remove(beanName);
 		}
-		if (instanceWrapper == null) {
+		if (instanceWrapper == null) { // 这里通过反射创建实例
 			instanceWrapper = createBeanInstance(beanName, mbd, args);
 		}
 		Object bean = instanceWrapper.getWrappedInstance();
@@ -588,7 +588,9 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		// Initialize the bean instance.
 		Object exposedObject = bean;
 		try {
+			// 初始化普通Bean对象，调用set方法完成bean的赋值操作
 			populateBean(beanName, mbd, instanceWrapper);
+			// 这里实现了AOP操作
 			exposedObject = initializeBean(beanName, exposedObject, mbd);
 		}
 		catch (Throwable ex) {
@@ -1131,6 +1133,8 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	/**
 	 * Create a new instance for the specified bean, using an appropriate instantiation strategy:
 	 * factory method, constructor autowiring, or simple instantiation.
+	 * <p>反射创建Bean对象的方法</p>
+	 *
 	 * @param beanName the name of the bean
 	 * @param mbd the bean definition for the bean
 	 * @param args explicit arguments to use for constructor or factory method invocation
@@ -1142,6 +1146,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	 */
 	protected BeanWrapper createBeanInstance(String beanName, RootBeanDefinition mbd, @Nullable Object[] args) {
 		// Make sure bean class is actually resolved at this point.
+		// 确保此时 bean 类已经被解析
 		Class<?> beanClass = resolveBeanClass(mbd, beanName);
 
 		if (beanClass != null && !Modifier.isPublic(beanClass.getModifiers()) && !mbd.isNonPublicAccessAllowed()) {
@@ -1179,6 +1184,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		}
 
 		// Candidate constructors for autowiring?
+		// 如果是autowire中使用的构造函数，则返回
 		Constructor<?>[] ctors = determineConstructorsFromBeanPostProcessors(beanClass, beanName);
 		if (ctors != null || mbd.getResolvedAutowireMode() == AUTOWIRE_CONSTRUCTOR ||
 				mbd.hasConstructorArgumentValues() || !ObjectUtils.isEmpty(args)) {
@@ -1186,6 +1192,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		}
 
 		// Preferred constructors for default construction?
+		// 如果是期望默认构造器，则返回
 		ctors = mbd.getPreferredConstructors();
 		if (ctors != null) {
 			return autowireConstructor(beanName, mbd, ctors, null);
@@ -1341,6 +1348,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	/**
 	 * Populate the bean instance in the given BeanWrapper with the property values
 	 * from the bean definition.
+	 * <p>根据BeanWrapper中的 bean 定义，给bean实例赋值</p>
 	 * @param beanName the name of the bean
 	 * @param mbd the bean definition for the bean
 	 * @param bw the BeanWrapper with bean instance
