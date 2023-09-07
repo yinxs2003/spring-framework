@@ -1,10 +1,10 @@
 buildscript {
 	repositories {
-		gradlePluginPortal()
-		maven { url "https://repo.spring.io/plugins-release" }
+		mavenCentral()
+		maven { url "https://repo.spring.io/plugins-snapshot" }
 	}
 	dependencies {
-		classpath("io.spring.gradle:propdeps-plugin:0.0.9.RELEASE")
+		classpath("io.spring.gradle:propdeps-plugin:0.0.8-SNAPSHOT")
 		classpath("org.asciidoctor:asciidoctorj-pdf:1.5.0-alpha.16")
 	}
 }
