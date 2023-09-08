@@ -504,6 +504,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				// 调用各种bean的处理器，存放在beanDefinitionMap里，beanDefinitionMap是在DefaultBeanFactory的变量
 				// 在这里对beanDefinitionMap里元素的进行赋值
 				// 处理所有的post-processors
+				// 创建被@Configration、@Controller、@Service...修饰的类的对象，并将对象放到beanDefinitionMap里
 				invokeBeanFactoryPostProcessors(beanFactory);
 
 				// Register bean processors that intercept bean creation.
