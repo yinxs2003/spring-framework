@@ -22,7 +22,7 @@ package org.springframework.context.annotation;
  * <p>For a more complete discussion of exactly what a scoped proxy is, see the
  * section of the Spring reference documentation entitled '<em>Scoped beans as
  * dependencies</em>'.
- *
+ * <p>代理模式枚举类，不使用代理，jdk代理，gclib代理</p>
  * @author Mark Fisher
  * @since 2.5
  * @see ScopeMetadata
