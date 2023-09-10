@@ -166,6 +166,7 @@ class ConfigurationClassParser {
 			}
 		}
 
+		// 在这里进行倒入spring.factories中自定义的Bean
 		this.deferredImportSelectorHandler.process();
 	}
 

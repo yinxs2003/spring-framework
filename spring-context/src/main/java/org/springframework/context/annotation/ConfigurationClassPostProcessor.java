@@ -299,7 +299,9 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 		Set<BeanDefinitionHolder> candidates = new LinkedHashSet<>(configCandidates);
 		Set<ConfigurationClass> alreadyParsed = new HashSet<>(configCandidates.size());
 		do {
-			parser.parse(candidates); // 这里解析@Configuration、@Import、@Controler、@Service、@Dao等注解，并创建对应实例
+			// 这里解析@Configuration、@Import、@Controler、@Service、@Dao等注解，并创建对应实例
+			// 在这里加载自定义spring.factories里的bean
+			parser.parse(candidates);
 			parser.validate();
 
 			Set<ConfigurationClass> configClasses = new LinkedHashSet<>(parser.getConfigurationClasses());
